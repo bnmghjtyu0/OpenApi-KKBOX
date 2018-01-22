@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Auth } from "@kkbox/kkbox-js-sdk";
-import { Api } from "@kkbox/kkbox-js-sdk";
+import { Auth, Api } from "@kkbox/kkbox-js-sdk";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -9,19 +8,27 @@ import { Api } from "@kkbox/kkbox-js-sdk";
 export class AppComponent implements OnInit {
   title = "app";
   ngOnInit() {
-    const auth = new Auth(
-      "60016913f613f55c92464838fe168e81",
-      "c0b101bf141418eb0cdbb992727f4ade"
-    );
-    auth.clientCredentialsFlow.fetchAccessToken().then(response => {
-      const access_token = response.data.access_token;
-      const api = new Api(access_token);
-      api.searchFetcher
-        .setSearchCriteria("五月天 派對動物", "track")
-        .fetchSearchResult()
-        .then(response => {
-          console.log(response.data);
-        });
+    var http = require("https");
+    var options = {
+      method: "GET",
+      hostname: "api.kkbox.com",
+      port: null,
+      path: "/v1.1/search?q=剛好遇見你&type=track&territory=TW",
+      headers: {
+        accept: "application/json",
+        authorization: "Bearer zMag02Dzk1a9V9xFqFdtIw=="
+      }
+    };
+    var req = http.request(options, function(res) {
+      var chunks = [];
+      res.on("data", function(chunk) {
+        chunks.push(chunk);
+      });
+      res.on("end", function() {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
     });
+    req.end();
   }
 }
