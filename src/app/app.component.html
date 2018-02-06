@@ -1,3 +1,13 @@
-<h2>OpenApi-KKBOX</h2>
-<a href="https://kkbox.github.io/OpenAPI-JavaScript/">外部連結</a>
-<pre>{{data|json}}</pre>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>OpenApi-KKBOX</h2>
+      <a href="https://kkbox.github.io/OpenAPI-JavaScript/">外部連結</a>
+      <!-- <pre>{{data|json}}</pre> -->
+    </div>
+
+    <div class="col-3" *ngFor="let item of data">
+      <h5>{{item.name}}</h5>
+    </div>
+  </div>
+</div>

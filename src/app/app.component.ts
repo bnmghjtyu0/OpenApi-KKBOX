@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     var dataURL =
       "https://api.kkbox.com/v1.1/search?limit=15&offset=30&q=%E5%89%9B%E5%A5%BD%E9%81%87%E8%A6%8B%E4%BD%A0&territory=TW&type=track";
     this.http.get<any[]>(dataURL, { headers: headers }).subscribe(data => {
-      this.data = data;
+      this.data = data.tracks.data;
       console.log(data);
     });
   }
