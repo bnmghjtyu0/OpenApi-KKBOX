@@ -1,11 +1,6 @@
+<app-header></app-header>
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h2>OpenApi-KKBOX</h2>
-      <a href="https://kkbox.github.io/OpenAPI-JavaScript/">KKBOX API</a>
-      <!-- <pre>{{data|json}}</pre> -->
-    </div>
-
     <div class="col-3" *ngFor="let item of data">
       <div class="card">
         <img class="card-img-top img-fluid" [src]="item.album.images[0].url" alt="Card image cap">
