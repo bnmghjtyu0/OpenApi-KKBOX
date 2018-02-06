@@ -11,7 +11,7 @@ import { Auth, Api } from "@kkbox/kkbox-js-sdk";
 })
 export class AppComponent implements OnInit {
   title = "app";
-  data = [];
+  data:any;
 
   // 4.注入 HttpClient 服務
   constructor(private http: HttpClient) {}
@@ -26,11 +26,10 @@ export class AppComponent implements OnInit {
     var offset = 30;
     var terr = "TW";
     var type = "track";
-
     var dataURL = `https://api.kkbox.com/v1.1/search?limit=${limit}&offset=${offset}&q=${q}&territory=${terr}&type=${type}`;
-    this.http.get<any[]>(dataURL, { headers: headers }).subscribe(data => {
+    this.http.get<any[]>(dataURL, { headers: headers }).subscribe((data:any) => {
       this.data = data.tracks.data;
-      // console.log(data);
+      console.log(data);
     });
   }
 
