@@ -1,5 +1,6 @@
 // 3.匯入 HttpClient 類別
 import { HttpClient } from "@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
 
 import { Component, OnInit } from "@angular/core";
 import { Auth, Api } from "@kkbox/kkbox-js-sdk";
@@ -10,15 +11,21 @@ import { Auth, Api } from "@kkbox/kkbox-js-sdk";
 })
 export class AppComponent implements OnInit {
   title = "app";
-  data;
+  data = [];
 
   // 4.注入 HttpClient 服務
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     // 5.發出 Http 要求 (GET)
-    this.http.get<any[]>("https://gank.io/api/random/data/福利/20").subscribe(data => {
+    let headers = new HttpHeaders({
+      Authorization: "Bearer zMag02Dzk1a9V9xFqFdtIw=="
+    });
+    var dataURL =
+      "https://api.kkbox.com/v1.1/search?limit=15&offset=30&q=%E5%89%9B%E5%A5%BD%E9%81%87%E8%A6%8B%E4%BD%A0&territory=TW&type=track";
+    this.http.get<any[]>(dataURL, { headers: headers }).subscribe(data => {
       this.data = data;
+      console.log(data);
     });
   }
 
