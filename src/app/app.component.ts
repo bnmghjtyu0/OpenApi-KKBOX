@@ -21,11 +21,16 @@ export class AppComponent implements OnInit {
     let headers = new HttpHeaders({
       Authorization: "Bearer zMag02Dzk1a9V9xFqFdtIw=="
     });
-    var dataURL =
-      "https://api.kkbox.com/v1.1/search?limit=15&offset=30&q=%E5%89%9B%E5%A5%BD%E9%81%87%E8%A6%8B%E4%BD%A0&territory=TW&type=track";
+    var limit = 20;
+    var q = "五月天";
+    var offset = 30;
+    var terr = "TW";
+    var type = "track";
+
+    var dataURL = `https://api.kkbox.com/v1.1/search?limit=${limit}&offset=${offset}&q=${q}&territory=${terr}&type=${type}`;
     this.http.get<any[]>(dataURL, { headers: headers }).subscribe(data => {
       this.data = data.tracks.data;
-      console.log(data);
+      // console.log(data);
     });
   }
 
