@@ -1,12 +1,15 @@
 <app-header></app-header>
 <div class="container">
   <div class="row">
-    <div class="col-3" *ngFor="let item of data">
+    <!-- <select name="" id="" class="form-control">
+      <option value="" *ngFor="let item of data">{{item.title}}</option>
+    </select> -->
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of data">
       <div class="card">
         <img class="card-img-top img-fluid" [src]="item.album.images[0].url" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{item.name}}</h5>
-          <a [href]="item.url" class="btn btn-primary">歌詞與試聽(KKBOX連結)</a>
+          <a [href]="item.url" class="btn btn-primary">在 kkbox 上撥放</a>
         </div>
       </div>
     </div>
