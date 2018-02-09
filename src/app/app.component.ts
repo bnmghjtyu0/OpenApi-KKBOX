@@ -21,31 +21,10 @@ export class AppComponent implements OnInit {
     let headers = new HttpHeaders({
       Authorization: "Bearer zMag02Dzk1a9V9xFqFdtIw=="
     });
-    let urlID = {
-      id01:"tracks",
-      id02:"albums",
-      id03:"artists",
-      id04:"shared-playlists",
-      id05: "featured-playlists",
-      id06: "featured-playlist-categories",
-      id07: "mood-stations",
-      id08: "genre-stations",
-      id09: "new-release-categories",
-      id10: "search",
-      id11: "new-hits-playlists",
-      id12: "charts"
-    };
-    var searchOption = {
-      limit: 20,
-      q: "五月天",
-      offset: 30,
-      terr: "TW",
-      type: "track"
-    };
-    let option = {
-      host: "api.kkbox.com",
-      path: `/v1.1/${urlID.id10}?q=${searchOption.q}&type=${searchOption.type}&territory=TW&offset=0&limit=50`
-    };
+
+
+    // 測試中
+   
     // --需要有 ID
     // 1.tracks 取得歌曲資訊
     var trackURL =
@@ -85,24 +64,22 @@ export class AppComponent implements OnInit {
     var chartsURL =
       "https://api.kkbox.com/v1.1/charts?territory=TW&offset=0&limit=50";
 
-    var dataURL = `https://${option.host}${option.path}`;
-    console.log(dataURL);
     // search 音樂搜尋引擎
-    // var searchOption = {
-    //   limit: 20,
-    //   q: "五月天",
-    //   offset: 30,
-    //   terr: "TW",
-    //   type: "track"
-    // };
-    // var searchURL = `https://api.kkbox.com/v1.1/search?limit=${
-    //   searchOption.limit
-    // }&offset=${searchOption.offset}&q=${searchOption.q}&territory=${
-    //   searchOption.terr
-    // }&type=${searchOption.type}`;
+    var searchOption = {
+      limit: 10,
+      q: "五月天",
+      offset: 10,
+      terr: "TW",
+      type: "track"
+    };
+    var searchURL = `https://api.kkbox.com/v1.1/search?limit=${
+      searchOption.limit
+    }&offset=${searchOption.offset}&q=${searchOption.q}&territory=${
+      searchOption.terr
+    }&type=${searchOption.type}`;
 
     this.http
-      .get<any[]>(dataURL, { headers: headers })
+      .get<any[]>(searchURL, { headers: headers })
       .subscribe((data: any) => {
         this.data = data.tracks.data;
         console.log(data);
